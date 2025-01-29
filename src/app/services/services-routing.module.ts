@@ -6,6 +6,7 @@ import { ItSolutionsComponent } from './it-solutions/it-solutions.component';
 import { ProfessionalTrainingComponent } from './professional-training/professional-training.component';
 import { EmploymentSolutionsComponent } from './employment-solutions/employment-solutions.component';
 import { ContractStaffingComponent } from './contract-staffing/contract-staffing.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -31,7 +32,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    RouterModule.forChild(routes),
+  ],
   exports: [RouterModule]
 })
 export class ServicesRoutingModule { }

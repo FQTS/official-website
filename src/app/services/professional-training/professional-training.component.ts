@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ISlider } from 'src/app/shared/banner/banner.component';
 
@@ -8,6 +9,17 @@ import { ISlider } from 'src/app/shared/banner/banner.component';
   styleUrls: ['./professional-training.component.scss']
 })
 export class ProfessionalTrainingComponent {
+  contactForm: FormGroup = this.formBuilder.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    email: ['', Validators.email],
+    mobile: [''],
+    qualification: [''],
+    passing_year: [''],
+    course: [],
+    resume: [],
+    description: [''],
+  }) ;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -48,4 +60,11 @@ export class ProfessionalTrainingComponent {
       image: 'assets/images/2.png'
     }
   ]
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  onSubmit(): void {
+    console.log(this.contactForm.value);
+    
+  }
 }
