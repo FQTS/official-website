@@ -1,9 +1,9 @@
 @import  '../../assets/bootstrap//boostrap-variables';
 .our-services{
-    background-image: url("../../assets/images/main-bg-1.jpg");
+    background-image: url("../../assets/images/service.jpeg");
     position: relative;
     overflow: hidden;
-    background-position: center center;
+    background-position: bottom;
     background-size: cover;
     background-repeat: no-repeat;
     &::before {
@@ -36,5 +36,16 @@
         margin-bottom: 20px;
         border: 2px dashed $primary;
         border-radius: 50%;
+    }
+}
+
+.img-wrapper {
+    height: 300px;
+    background: #595757;
+    padding: 30px;
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
     }
 }

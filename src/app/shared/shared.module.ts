@@ -1,35 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { BannerComponent } from './banner/banner.component';
 import { CoursesComponent } from './courses/courses.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { SectionTitleComponent } from './section-title/section-title.component';
 import { CardComponentComponent } from './card-component/card-component.component';
+import { PageTitleComponent } from './page-title/page-title.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 
 @NgModule({
   declarations: [
-    FooterComponent,
-    HeaderComponent,
     BannerComponent,
     CoursesComponent,
     SectionTitleComponent,
-    CardComponentComponent
+    CardComponentComponent,
+    PageTitleComponent
   ],
   exports: [
-    FooterComponent,
-    HeaderComponent,
     BannerComponent,
     CoursesComponent,
     SectionTitleComponent,
-    CardComponentComponent
+    CardComponentComponent,
+    PageTitleComponent
   ],
   imports: [
     CommonModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    CarouselModule,
   ]
 })
 export class SharedModule { }

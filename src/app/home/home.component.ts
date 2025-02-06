@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Service } from '../interfaces/service';
 import { YourNeed } from '../interfaces/your-need';
 export interface Course {
@@ -15,88 +16,77 @@ export class HomeComponent {
   yourNeeds: YourNeed[] = [
     {
       icon: 'shield-check',
-      cardTitle: 'Reliable Software Solution',
-      cardDescription: 'We are consistently providing good quality of Softwares, which is high in performance and we are trustworthy, honest and responsible'
+      cardTitle: 'Reliable Software Engineering Services',
+      cardDescription: 'We strive to provide the industry standard software solutions, our solutions can be benchmarked against Cost, Quality & Speed in line with our customer expectations.'
     },
     {
       icon: 'graph-up-arrow',
       cardTitle: 'Web Analysis',
-      cardDescription: 'We analyse all related web platform before constructing any website or web application'
+      cardDescription: 'We analyse and research related web platforms before proposing any website or web application solutions'
     },
     {
       icon: 'person',
-      cardTitle: 'First Support',
-      cardDescription: 'Our team provide better customer support by coordinating with our clients'
+      cardTitle: 'Priority Support',
+      cardDescription: 'Our team provides prioritised customer support along with the seamless coordination as per client needs.'
     },
     {
       icon: 'gear',
       cardTitle: 'Integrity',
-      cardDescription: 'We are consistent, honest and fair and always do what is right'
+      cardDescription: 'Our business principles are based on consistency, corporate governance, a client-first approach and ethical business practices.'
     },
     {
       icon: 'pie-chart-fill',
       cardTitle: 'Evolution',
-      cardDescription: 'Continue to evolve with modern change. Don’t be satisfied with the current status'
+      cardDescription: 'We believe in evolution and  adaptability with industry trends, challenge the status quo with improvisation.'
     },
     {
       icon: 'card-checklist',
       cardTitle: 'Accountability',
-      cardDescription: 'We are personally accountable for delivering on our commitments'
+      cardDescription: 'Beyond the technology solution, we focus on delivering value to our customers with determination and passion to perform.'
     }
   ]; 
   ourServices: Service[] = [
     {
-      name: 'IT Solutions',
-      description : 'While correct use of technology has long been an important factor in business success, the need for IT solutions is seeing unprecedented growth in today’s market.',
-      icon: 'lightbulb-fill'
+      name: 'Software Engineering Services',
+      description : 'In today’s market, the demand for relevant software solutions and skilled talent is experiencing unprecedented growth, even though the effective use of technology has always been crucial for business success.',
+      icon: 'lightbulb-fill',
+      routePath: 'services/it-solutions'
     },
     {
-      name: 'Professional Training',
-      description : 'We provide professional training to working professionals as well as students to gain expertise in specific area and enable them to switch/join more demanding job.',
-      icon: 'person-bounding-box'
-    },
-    {
-      name: 'Employment Solutions',
-      description : 'We provide professional training to graduates and provide them legal employment and exposure to real world software projects. We help them to foster their skills and experience to enter into challenging IT world.',
-      icon: 'person-raised-hand'
+      name: 'Professional Trainings',
+      description : 'We provide professional training to working professionals as well as graduates to gain expertise in specific areas and enable them to seize opportunities aligned with their career aspirations. Additionally, we offer legitimate employment and exposure to the real-world industry.',
+      icon: 'person-bounding-box',
+      routePath: 'services/professional-training'
     },
     {
       name: 'Contract Staffing',
-      description : 'The industry veterans have joined hands to start a software development company with an intent to serve the IT industry in various ways.',
-      icon: 'people-fill'
-    }
-
-  ]
-  courses: Course[] = [ 
+      description : 'Our commitment lies in assisting companies with staff augmentation through managed services tailored to their unique requirements and organizational culture. By doing so, we enable companies to focus on their core business, driving growth and success. ',
+      icon: 'people-fill',
+      routePath: 'services/contract-staffing'
+    },
     {
-    image: '../../../assets/images/Asset1.svg',
-    courseTitle: 'Front End Develiopnent',
-    courseDescription: 'Tets Description',
-  },
-  {
-    image: '../../../assets/images/Asset1.svg',
-    courseTitle: 'Front End Develiopnent 1',
-    courseDescription: 'Tets Description',
-  },
-  {
-    image: '../../../assets/images/Asset1.svg',
-    courseTitle: 'Front End Develiopnent 3',
-    courseDescription: 'Tets Description',
-  },
-  {
-    image: '../../../assets/images/Asset1.svg',
-    courseTitle: 'Front End Develiopnent',
-    courseDescription: 'Tets Description',
-  },
-  {
-    image: '../../../assets/images/Asset1.svg',
-    courseTitle: 'Front End Develiopnent 1',
-    courseDescription: 'Tets Description',
-  },
-  {
-    image: '../../../assets/images/Asset1.svg',
-    courseTitle: 'Front End Develiopnent 3',
-    courseDescription: 'Tets Description',
+      name: 'Staffing Agency',
+      description : 'Our talent acquisition team excels at identifying, sourcing, and recruiting top talent for companies. We are specialized in matching skill sets and experiences of job seekers with the requirements of available job positions.',
+      icon: 'person-raised-hand',
+      routePath: 'services/employment-solutions'
+    }
+  ];
+
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    nav: false,
+    navSpeed: 1000,
+    autoplaySpeed: 5000,
+    autoplay: true,
+    navText: ['<i class="bi bi-chevron-left"></i>', '<i class="bi bi-chevron-right"></i>'],
+    responsive: {
+      940: {
+        items: 4
+      }
+    },
   }
-];
 }

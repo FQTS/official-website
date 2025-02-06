@@ -1,0 +1,50 @@
+<app-page-title [title]="'Our Services'"></app-page-title>
+<section class="section-wrapper our-services">
+    <div class="container position-relative">
+        <div class="row">
+            <div class="col-md-3 mb-5" *ngFor="let service of ourServices">
+                    <app-card-component
+                      [icon]="service.icon"
+                      [cardTitle]="service.name"
+                      [cardDescription]="service.description"
+                      [showReadMore]="true"
+                      [routePath]="service.routePath"
+                      (redirectToRoute)="redirectToRoute($event)"
+                    ></app-card-component>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container my-5">
+    <section>
+        <app-section-title
+        titlePreffix="WHAT"
+        titleSuffix="WE DO"
+        titleAlign="center"
+        ></app-section-title>
+        <div class=" text-center">
+            <h3>We Have High Service That Stand</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <i class="bi bi-megaphone-fill icon-size"></i>
+                <h4> Product to saltelite</h4>
+                <p>We job gives you handcrafted options such as front admin reviews or It also gives It business
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="bi bi-bar-chart-line  icon-size"></i>
+                <h4>Computer of solution</h4>
+                <p>We job gives you handcrafted options such as front admin reviews or It also gives It business</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="bi bi-laptop  icon-size"></i>
+                <h4>Business of solution</h4>
+                <p>We job gives you handcrafted options such as front admin reviews or It also gives It business</p>
+            </div>
+
+
+        </div>
+    </section>
+
+</div>
