@@ -11,21 +11,11 @@
                     <div>
                       <span class="category">Our Courses</span>
                       <p class="fs-40 lh-40 text-white title pe-5">
-                        {{ slide.heading
-                        }}<span class="text-primary">
-                          {{ slide.primaryText }}</span
-                        >
+                        {{ slide.heading }} <span class="text-primary">{{ slide.primaryText }}</span>
                       </p>
-                      <p
-                        class="fs-5 text-white mt-5 sub-heading"
-                        [innerHTML]="slide.subHeading"
-                      ></p>
+                      <p class="fs-5 text-white mt-5 sub-heading" [innerHTML]="slide.subHeading"></p>
                       <div class="btn-group mt-5">
-                        <a
-                          class="btn btn-primary rounded-5 me-3 btn-lg"
-                          href="#contactUs"
-                          >Contact Us</a
-                        >
+                        <a class="btn btn-primary rounded-5 me-3 btn-lg" href="#contactUs">Contact Us</a>
                       </div>
                     </div>
                   </div>
@@ -39,6 +29,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- <app-page-title [title]="'Professional Trainings'"></app-page-title> -->
 
@@ -84,7 +75,7 @@
           <div class="icon">
             <i class="bi bi-patch-plus-fill"></i>
           </div>
-          <div class="main-content  h-100">
+          <div class="main-content  h-100"> 
             <h4>Angular & Basics of HTML, CSS</h4>
             <p>
               Learn to design, develop, and deploy robust microservices
@@ -386,25 +377,22 @@
                 <div class="col-md-6">
                   <div class="form-floating mb-3">
                     <input
-                      type="date"
+                      type="text"
                       class="form-control"
                       id="year"
                       placeholder="Enter Passing Year"
-                      formControlName="passing_year"
+                      formControlName="passingyear"
                     />
                     <label for="year">Passing Year</label>
                   </div>
                 </div>
-  
-                
               </div>
             <div class="form-floating mb-3">
               <select
                 class="form-select"
                 id="floatingSelect"
                 aria-label="Floating label select example"
-                formControlName="course"
-              >
+                formControlName="course">
                 <option selected>Open this select menu</option>
                 <option value="1">DevOps With AWS</option>
                 <option value="2">Java Springboot</option>
@@ -412,12 +400,12 @@
               </select>
               <label for="floatingSelect">Select Course </label>
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
               <label for="file" class="form-label text-white"
                 >Upload Resume</label
               >
-              <input type="file" class="form-control" id="file"  formControlName="resume"/>
-            </div>
+              <input type="file" class="form-control" id="file"  />
+            </div> -->
             <div class="form-floating mb-3">
               <textarea
                 class="form-control"
@@ -425,11 +413,12 @@
                 id="description"
                 style="height: 80px"
                 formControlName="description"
-              ></textarea>
-              <label for="description" >Description</label>
+              >
+            </textarea>
+              <label for="description">Description</label>
             </div>
             <div class="d-grid">
-              <button type="submit" id="form-submit" class="orange-button" (click)="onSubmit()">
+              <button type="button" (click)="onSubmit()"  class="orange-button">
                 Send Message Now
               </button>
             </div>

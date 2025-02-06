@@ -10,7 +10,7 @@ import { EmploymentSolutionsComponent } from './employment-solutions/employment-
 import { ContractStaffingComponent } from './contract-staffing/contract-staffing.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,9 +27,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     SharedModule,
     CarouselModule,
     NgbAccordionModule,
-
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class ServicesModule { }
