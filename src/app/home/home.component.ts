@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Service } from '../interfaces/service';
 import { YourNeed } from '../interfaces/your-need';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SharedModule } from "../shared/shared.module";
+import { ProfessionalTrainingService } from '../core/services/professional-training.service';
+
 export interface Course {
   image: string;
   courseTitle: string;
@@ -10,9 +14,54 @@ export interface Course {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  // imports: [SharedModule]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
+  courses= [];
+  form: FormGroup;
+  constructor(private fb: FormBuilder, private professionalTrainingService: ProfessionalTrainingService) {
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      mobile: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      message: [''],
+      serviceRequired: ['', [Validators.required]],
+    });
+  }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+    // this.professionalTrainingService.getCourse().subscribe((course: any) => {
+    //   this.courses = course;
+    // })
+  }
+
+  // Clientenquiry() {
+  //   if (this.form.valid) {
+  //     console.log('Form Data:', this.form.value);
+  //   } else {
+  //     console.log('Form is invalid');
+  //   }
+  // }
+
+  Clientenquiry() {
+    console.log("error");
+    this.form.markAllAsTouched;
+    if (this.form.valid) {
+      const formData = new FormData();
+      const formValue = this.form.value
+      formData.set("name",formValue.name)
+      formData.set("email",formValue.email)
+      formData.set("mobile",formValue.mobile)
+      formData.set("message",formValue.message)
+      formData.set("serviceRequired",formValue.serviceRequired)
+      this.professionalTrainingService.clientenquiry(
+  formData
+      ).subscribe((payload: unknown)=>{
+        console.log(payload)
+      })
+    } 
+  }
   yourNeeds: YourNeed[] = [
     {
       icon: 'shield-check',

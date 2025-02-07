@@ -7,7 +7,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent, HeaderComponent } from './shared';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { ProfessionalTrainingService } from 'src/app/professional-training.service'; // ✅ Corrected Import
+import { ProfessionalTrainingService } from 'src/app/core/services/professional-training.service'; 
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -21,10 +23,11 @@ import { ProfessionalTrainingService } from 'src/app/professional-training.servi
     SharedModule,
     NgbModule,
     BrowserAnimationsModule,
-    HttpClientModule, // ✅ Moved to imports
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [
-    ProfessionalTrainingService // ✅ Added to providers
+    ProfessionalTrainingService 
   ],
   bootstrap: [AppComponent]
 })

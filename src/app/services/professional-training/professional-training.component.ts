@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProfessionalTrainingService } from 'src/app/professional-training.service'; // ✅ Correct import
+import { ProfessionalTrainingService } from 'src/app/core/services/professional-training.service'; // ✅ Correct import
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ISlider } from 'src/app/shared/banner/banner.component';
 
@@ -97,8 +97,7 @@ export class ProfessionalTrainingComponent implements OnInit {
       formData.set("passingYear",formValue.passingyear)
       formData.set("description",formValue.description)
       formData.set("course",formValue.course)
-      
-      this.professionalTrainingService.submitForm(
+      this.professionalTrainingService.contactenquiry(
   formData
       ).subscribe((payload)=>{
         console.log(payload)
