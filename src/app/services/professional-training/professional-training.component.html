@@ -386,11 +386,11 @@
                 <div class="col-md-6">
                   <div class="form-floating mb-3">
                     <input
-                      type="date"
+                      type="number"
                       class="form-control"
                       id="year"
                       placeholder="Enter Passing Year"
-                      formControlName="passing_year"
+                      formControlName="passingYear"
                     />
                     <label for="year">Passing Year</label>
                   </div>
@@ -398,20 +398,21 @@
   
                 
               </div>
-            <div class="form-floating mb-3">
-              <select
-                class="form-select"
-                id="floatingSelect"
-                aria-label="Floating label select example"
-                formControlName="course"
-              >
-                <option selected>Open this select menu</option>
-                <option value="1">DevOps With AWS</option>
-                <option value="2">Java Springboot</option>
-                <option value="3">Microservices</option>
-              </select>
-              <label for="floatingSelect">Select Course </label>
-            </div>
+              <div class="form-floating mb-3">
+                <select
+                  class="form-select"
+                  id="floatingSelect"
+                  aria-label="Floating label select example"
+                  formControlName="course"
+                >
+                  <option value="" disabled selected>Select a course</option>
+                  <option *ngFor="let course of courses" [value]="course.id">
+                    {{ course.name }}
+                  </option>
+                </select>
+                <label for="floatingSelect">Select Course</label>
+              </div>
+              
             <div class="mb-3">
               <label for="file" class="form-label text-white"
                 >Upload Resume</label

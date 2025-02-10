@@ -176,9 +176,7 @@
                 <div class="form-group mb-3">
                   <label for="service" class="form-label text-start d-block">Service Required</label>
                   <select id="service" class="form-select" formControlName="serviceRequired">
-
-                    <option value="1">Website Design</option>
-                    <option value="2">Website Redesign</option>
+                    <option *ngFor="let service of serviceTypes" [value]="service.id">{{ service.name }}</option>
                   </select>
                 </div>
               </div>

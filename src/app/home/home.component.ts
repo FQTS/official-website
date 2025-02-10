@@ -5,6 +5,7 @@ import { YourNeed } from '../interfaces/your-need';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedModule } from "../shared/shared.module";
 import { ProfessionalTrainingService } from '../core/services/professional-training.service';
+import { ToastrService } from 'ngx-toastr';
 
 export interface Course {
   image: string;
@@ -15,12 +16,18 @@ export interface Course {
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  // imports: [SharedModule]
+  
+
 })
-export class HomeComponent implements OnInit{
-  courses= [];
+export class HomeComponent implements OnInit {
+  courses = [];
   form: FormGroup;
-  constructor(private fb: FormBuilder, private professionalTrainingService: ProfessionalTrainingService) {
+  serviceTypes: any[] = [];
+
+  constructor(private fb: FormBuilder,
+    private professionalTrainingService: ProfessionalTrainingService,
+    private toastr: ToastrService 
+  ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -30,37 +37,59 @@ export class HomeComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
-    // this.professionalTrainingService.getCourse().subscribe((course: any) => {
-    //   this.courses = course;
-    // })
+    this.loadServices();
+    this.loadCourses();
+  }
+  loadServices(): void {
+    this.professionalTrainingService.getServices().subscribe({
+      next: (data) => {
+        this.serviceTypes = data;
+      },
+      error: (err) => {
+        console.error('Error fetching services:', err);
+      }
+    });
   }
 
-  // Clientenquiry() {
-  //   if (this.form.valid) {
-  //     console.log('Form Data:', this.form.value);
-  //   } else {
-  //     console.log('Form is invalid');
-  //   }
-  // }
+  /**
+   * Fetch courses from API
+   */
+  loadCourses(): void {
+    this.professionalTrainingService.getCourse()
+      .subscribe({
+        next: (course: any) => {
+          this.courses = course;
+        },
+        error: (err) => {
+          console.error('Error fetching courses:', err);
+        }
+      });
+  }
 
-  Clientenquiry() {
-    console.log("error");
-    this.form.markAllAsTouched;
+  Clientenquiry(): void {
+    this.form.markAllAsTouched();  
+
     if (this.form.valid) {
       const formData = new FormData();
-      const formValue = this.form.value
-      formData.set("name",formValue.name)
-      formData.set("email",formValue.email)
-      formData.set("mobile",formValue.mobile)
-      formData.set("message",formValue.message)
-      formData.set("serviceRequired",formValue.serviceRequired)
-      this.professionalTrainingService.clientenquiry(
-  formData
-      ).subscribe((payload: unknown)=>{
-        console.log(payload)
-      })
-    } 
+      const formValue = this.form.value;
+
+      formData.set('name', formValue.name);
+      formData.set('email', formValue.email);
+      formData.set('mobile', formValue.mobile);
+      formData.set('message', formValue.message);
+      formData.set('serviceRequired', formValue.serviceRequired);
+
+      this.professionalTrainingService.clientenquiry(formData)
+      .subscribe(() => {
+        this.toastr.success('Your enquiry has been submitted successfully!', 'Success');
+        this.form.reset();
+      }, (error) => {
+        console.error("Error submitting form:", error);
+        this.toastr.error('Failed to submit enquiry. Please try again.', 'Error');
+      });
+  } else {
+    this.toastr.warning('Please fill out all required fields correctly.', 'Warning');
+  }
   }
   yourNeeds: YourNeed[] = [
     {
@@ -93,29 +122,29 @@ export class HomeComponent implements OnInit{
       cardTitle: 'Accountability',
       cardDescription: 'Beyond the technology solution, we focus on delivering value to our customers with determination and passion to perform.'
     }
-  ]; 
+  ];
   ourServices: Service[] = [
     {
       name: 'Software Engineering Services',
-      description : 'In today’s market, the demand for relevant software solutions and skilled talent is experiencing unprecedented growth, even though the effective use of technology has always been crucial for business success.',
+      description: 'In today’s market, the demand for relevant software solutions and skilled talent is experiencing unprecedented growth, even though the effective use of technology has always been crucial for business success.',
       icon: 'lightbulb-fill',
       routePath: 'services/it-solutions'
     },
     {
       name: 'Professional Trainings',
-      description : 'We provide professional training to working professionals as well as graduates to gain expertise in specific areas and enable them to seize opportunities aligned with their career aspirations. Additionally, we offer legitimate employment and exposure to the real-world industry.',
+      description: 'We provide professional training to working professionals as well as graduates to gain expertise in specific areas and enable them to seize opportunities aligned with their career aspirations. Additionally, we offer legitimate employment and exposure to the real-world industry.',
       icon: 'person-bounding-box',
       routePath: 'services/professional-training'
     },
     {
       name: 'Contract Staffing',
-      description : 'Our commitment lies in assisting companies with staff augmentation through managed services tailored to their unique requirements and organizational culture. By doing so, we enable companies to focus on their core business, driving growth and success. ',
+      description: 'Our commitment lies in assisting companies with staff augmentation through managed services tailored to their unique requirements and organizational culture. By doing so, we enable companies to focus on their core business, driving growth and success. ',
       icon: 'people-fill',
       routePath: 'services/contract-staffing'
     },
     {
       name: 'Staffing Agency',
-      description : 'Our talent acquisition team excels at identifying, sourcing, and recruiting top talent for companies. We are specialized in matching skill sets and experiences of job seekers with the requirements of available job positions.',
+      description: 'Our talent acquisition team excels at identifying, sourcing, and recruiting top talent for companies. We are specialized in matching skill sets and experiences of job seekers with the requirements of available job positions.',
       icon: 'person-raised-hand',
       routePath: 'services/employment-solutions'
     }

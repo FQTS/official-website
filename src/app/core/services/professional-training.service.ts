@@ -21,5 +21,8 @@ export class ProfessionalTrainingService {
   getCourse(): Observable<any> {
     return this.http.get<any>(this.apiUrl + 'courses');
   }
+  getServices(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}contact-requests/services`);
+  }
 }
 

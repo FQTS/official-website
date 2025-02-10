@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfessionalTrainingService } from 'src/app/core/services/professional-training.service'; // ✅ Correct import
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ISlider } from 'src/app/shared/banner/banner.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class ProfessionalTrainingComponent implements OnInit {
 
   contactForm: FormGroup;
   selectedFile: File | null = null;
+  courses: any[] = []; 
 
   customOptions: OwlOptions = {
     loop: true,
@@ -57,10 +59,12 @@ export class ProfessionalTrainingComponent implements OnInit {
     }
   ]
   http: any;
+  form: any;
 
   constructor(
     private formBuilder: FormBuilder,
-    private professionalTrainingService: ProfessionalTrainingService
+    private professionalTrainingService: ProfessionalTrainingService,
+    private toastr: ToastrService
   ) {
     this.contactForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
@@ -68,13 +72,25 @@ export class ProfessionalTrainingComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       qualification: [''],
-      passingyear: [''],
+      passingYear: ['', [Validators.required]],
       course: ['', [Validators.required]],
       description: [''],
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fetchCourses();
+  }
+  fetchCourses(): void {
+    this.professionalTrainingService.getCourse().subscribe(
+      (data) => {
+        this.courses = data;
+      },
+      (error) => {
+        console.error('Error fetching courses', error);
+      }
+    );
+  }
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
@@ -84,24 +100,29 @@ export class ProfessionalTrainingComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("error");
     this.contactForm.markAllAsTouched();
     if (this.contactForm.valid) {
       const formData = new FormData();
-      const formValue = this.contactForm.value
-      formData.set("firstName",formValue.firstName)
-      formData.set("lastName",formValue.lastName)
-      formData.set("email",formValue.email)
-      formData.set("mobile",formValue.mobile)
-      formData.set("qualification",formValue.qualification)
-      formData.set("passingYear",formValue.passingyear)
-      formData.set("description",formValue.description)
-      formData.set("course",formValue.course)
-      this.professionalTrainingService.contactenquiry(
-  formData
-      ).subscribe((payload)=>{
-        console.log(payload)
-      })
+      const formValue = this.contactForm.value;
+      formData.set("firstName", formValue.firstName);
+      formData.set("lastName", formValue.lastName);
+      formData.set("email", formValue.email);
+      formData.set("mobile", formValue.mobile);
+      formData.set("qualification", formValue.qualification);
+      formData.set("passingYear", formValue.passingYear);
+      formData.set("description", formValue.description);
+      formData.set("course", formValue.course); 
+
+      this.professionalTrainingService.contactenquiry(formData).subscribe(
+        (response) => {
+          this.toastr.success('Your enquiry has been submitted successfully!', 'Success');
+          this.form.reset(); 
+        },
+        (error) => {
+          console.error('Error submitting enquiry:', error);
+          this.toastr.error('Something went wrong. Please try again later.', 'Error');
+        }
+      );
     } 
   }
 }
