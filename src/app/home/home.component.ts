@@ -72,7 +72,6 @@ export class HomeComponent implements OnInit {
     if (this.form.valid) {
       const formData = new FormData();
       const formValue = this.form.value;
-
       formData.set('name', formValue.name);
       formData.set('email', formValue.email);
       formData.set('mobile', formValue.mobile);

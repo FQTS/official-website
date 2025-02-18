@@ -28,7 +28,10 @@ export class ProfessionalTrainingComponent implements OnInit {
     autoplay: false,
     navText: ['<i class="bi bi-chevron-left"></i>', '<i class="bi bi-chevron-right"></i>'],
     responsive: {
-      940: {
+      0: {
+        items: 1
+      },
+      991: {
         items: 1
       }
     },

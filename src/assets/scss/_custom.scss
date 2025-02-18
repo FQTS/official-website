@@ -99,6 +99,11 @@
   text-align: right;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 991px) {
+    position: relative;
+    flex-direction: row;
+    bottom: auto;
+}
 }
 .owl-theme .owl-nav [class*="owl-"] {
   width: 50px;
@@ -140,6 +145,9 @@
     background-color: #f1f0fe;
     transition: all 0.4s;
     margin-right: 50px;
+    @media screen and (max-width: 991px) {
+      margin-right: 0px;
+    }
     h4 {
       font-size: 22px;
       font-weight: 600;
@@ -187,7 +195,10 @@
   margin-top: 150px;
   position: relative;
   padding: 50px 0px;
-
+  @media screen and (max-width: 991px) {
+    margin-top: 5px;
+    margin-bottom: 0 !important;
+  }
   &.right {
     &::before {
         left: auto;
@@ -196,6 +207,12 @@
         border-bottom-left-radius: 500px;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
+        @media screen and (max-width: 991px) {
+          margin-left: 0;
+          width: 100%;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+         }
     }
   }
   &:before {
@@ -210,10 +227,19 @@
     content: "";
     border-top-right-radius: 500px;
     border-bottom-right-radius: 500px;
+    @media screen and (max-width: 991px) {
+      margin-left: 0;
+      width: 100%;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+     }
   }
   .section-heading {
     margin-right: 110px;
     margin-bottom: 0px;
+    @media screen and (max-width: 991px) {
+      margin-right: 0;
+    }
     p {
       margin-top: 50px;
     }
@@ -225,6 +251,9 @@
     background-color: #7a6ad8;
     position: relative;
     z-index: 1;
+    @media screen and (max-width: 991px) {
+      padding: 20px;
+    }
     &::before {
       background: url("../images/contact-dec-01.png");
       position: absolute;
@@ -326,5 +355,11 @@
     height: 100% !important;
     width: 100% !important;
     object-fit: contain !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .mt-sm-100 {
+    margin-top: 120px !important;
   }
 }
