@@ -19,7 +19,7 @@ export interface Course {
   
 
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   courses = [];
   form: FormGroup;
   serviceTypes: any[] = [];
@@ -36,10 +36,10 @@ export class HomeComponent implements OnInit {
       serviceRequired: ['', [Validators.required]],
     });
   }
-  ngOnInit(): void {
-    this.loadServices();
-    this.loadCourses();
-  }
+  // ngOnInit(): void {
+  //   // this.loadServices();
+  //   // this.loadCourses();
+  // }
   loadServices(): void {
     this.professionalTrainingService.getServices().subscribe({
       next: (data) => {

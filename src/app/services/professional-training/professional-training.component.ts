@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './professional-training.component.html',
   styleUrls: ['./professional-training.component.scss']
 })
-export class ProfessionalTrainingComponent implements OnInit {
+export class ProfessionalTrainingComponent {
 
   contactForm: FormGroup;
   selectedFile: File | null = null;
@@ -81,9 +81,9 @@ export class ProfessionalTrainingComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.fetchCourses();
-  }
+  // ngOnInit(): void {
+  //   this.fetchCourses();
+  // }
   fetchCourses(): void {
     this.professionalTrainingService.getCourse().subscribe(
       (data) => {
