@@ -11,8 +11,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     padding: 160px 0px 120px 0px;
-    height: 100vh;
-    
+    @media screen and (max-width: 991px) {
+        padding: 50px 0px 120px 0px;
+    }
    
 }
 .banner-text {
@@ -22,7 +23,6 @@
     flex-direction: column;
     justify-content: center;
     justify-items: center;
-    height: 100%;
     padding: 40px;
     z-index: 1;
     @media screen and (max-width: 991px) {
@@ -38,6 +38,9 @@
     .sub-heading {
         width: 60%;
         line-height: 28px;
+        @media screen and (max-width: 991px) {
+            width: 100%;
+        }
     }
     span.category {
         background-color: #7a6ad8;
@@ -117,6 +120,9 @@
         background-color: #7a6ad8;
         border-radius: 40px;
         padding: 20px 50px 50px 50px;
+        @media screen and (max-width: 991px) {
+            padding: 20px 20px 20px 20px;
+        }
         .accordion {
             .accordion-item {
                 background-color: #fff;

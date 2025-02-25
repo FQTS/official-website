@@ -154,16 +154,26 @@ export class HomeComponent {
     mouseDrag: true,
     touchDrag: false,
     pullDrag: false,
-    dots: false,
-    nav: false,
+    dots: true,
     navSpeed: 1000,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 2000,
+    margin: 10,
     autoplay: true,
     navText: ['<i class="bi bi-chevron-left"></i>', '<i class="bi bi-chevron-right"></i>'],
+    nav: false,
     responsive: {
-      940: {
+      1140: {
         items: 4
-      }
+      },
+      940: {
+        items: 3
+      },
+      500: {
+        items: 2
+      },
+      0: {
+        items: 1
+      },
     },
   }
 }

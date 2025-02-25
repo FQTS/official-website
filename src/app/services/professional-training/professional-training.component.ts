@@ -20,12 +20,13 @@ export class ProfessionalTrainingComponent {
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
-    touchDrag: false,
+    touchDrag: true,
     pullDrag: false,
     dots: false,
     navSpeed: 1000,
     autoplaySpeed: 5000,
-    autoplay: false,
+    autoplayMouseleaveTimeout: 1000,
+    autoplay: true,
     navText: ['<i class="bi bi-chevron-left"></i>', '<i class="bi bi-chevron-right"></i>'],
     responsive: {
       0: {
