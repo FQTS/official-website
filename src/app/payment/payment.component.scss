@@ -1,0 +1,11 @@
+.payment-wrapper {
+    background: url('../../assets/images/bg.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 150px;
+    .form-wrapper {
+        background: rgb(255 255 255 / 80%);
+        box-shadow: 0px 3px 15px #7a7a7a;
+        border-radius: 8px;
+    }
+}
